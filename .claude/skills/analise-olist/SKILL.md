@@ -68,7 +68,7 @@ Antes de calcular, leia [references/regras-de-negocio.md](references/regras-de-n
 1. Identifique a métrica (M1, M2 ou M3), o período, as UFs, o top N e se o pedido é uma **continuação** (ex.: "e só em SP?"). Numa continuação, **mantenha os filtros anteriores e altere apenas o que foi pedido**, dizendo o que mudou.
 2. Confirme a pasta dos dados. Na primeira análise da conversa, rode o diagnóstico para conferir arquivos, colunas, período disponível e problemas de chave:
    `python .claude/skills/analise-olist/scripts/analise.py diagnostico --dados <PASTA>`
-3. Se a pergunta exigir um campo que não existe (lucro, custo, estoque, motivo de cancelamento) ou uma definição não acordada, **não calcule**. Diga o que falta (com base em [references/relacionamentos.md](references/relacionamentos.md) e no diagnóstico) e ofereça a pergunta mais próxima que a base responde.
+3. Se a pergunta exigir um campo que não existe (lucro, custo, estoque, motivo de cancelamento) ou uma definição não acordada, **não calcule**. Mostre a evidência (a seção "Colunas disponíveis" do diagnóstico lista os campos de todos os CSVs da pasta), diga o que falta (veja [references/relacionamentos.md](references/relacionamentos.md)) e ofereça a pergunta mais próxima que a base responde.
 
 ### Executar a tarefa
 

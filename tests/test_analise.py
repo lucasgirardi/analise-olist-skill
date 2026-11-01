@@ -260,3 +260,11 @@ def test_cli_salva_saida_sem_tocar_nos_dados(script, olist_dir, tmp_path):
 def test_arredondamento_comercial_na_saida(script, olist_dir):
     r = _cli(script, "ticket_medio", "--dados", str(olist_dir))
     assert "R$ 63,13" in r.stdout          # 505 / 8 = 63,125
+
+
+def test_diagnostico_lista_colunas_de_todos_os_arquivos(olist_dir, garden_dir):
+    """Base para responder 'a base não permite': mostrar que o campo não existe em nenhum arquivo."""
+    col = diagnostico(carregar(olist_dir))["colunas_disponiveis"]
+    assert "vlPagamento" in col["pagamento_pedido.csv"] and "vlPreco" in col["item_pedido.csv"]
+    gs = diagnostico(carregar(garden_dir))["colunas_disponiveis"]
+    assert not any("freight" in c or "frete" in c.lower() for cols in gs.values() for c in cols)
