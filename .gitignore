@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+# Base Olist completa: fica fora do repositório (informe a pasta com --dados)
+dados/olist/
