@@ -292,8 +292,13 @@ def diagnostico(base: Base) -> dict:
     if q["pedidos_total"] and q["pedidos_data_invalida_ou_ausente"] > q["pedidos_total"] / 2:
         obs.append(f"Mais da metade das datas em {e.col_data} é inválida: confira o formato no dicionário "
                    f"(o script espera AAAA-MM-DD[ HH:MM:SS]).")
+    colunas = {}
+    for arq in sorted(base.pasta.glob("*.csv")):  # só o cabeçalho: serve para dizer se um campo existe
+        cab = arq.read_bytes().decode("utf-8-sig", errors="replace").splitlines()[:1]
+        sep = max([",", ";", "\t"], key=cab[0].count) if cab else ","
+        colunas[arq.name] = [c.strip() for c in cab[0].split(sep)] if cab else []
     return {"analise": "diagnostico", "esquema": e.nome, "descricao": e.descricao, "pasta": str(base.pasta),
-            "arquivos_lidos": base.arquivos_lidos, "outros_arquivos_presentes": outros,
+            "arquivos_lidos": base.arquivos_lidos, "outros_arquivos_presentes": outros, "colunas_disponiveis": colunas,
             "qualidade": q, "observacoes": obs}
 
 
@@ -311,6 +316,8 @@ def formatar(r: dict, comando: Optional[str] = None) -> str:
         L += [f"  - {a}: {i['linhas']} linhas (separador '{i['separador']}')" for a, i in r["arquivos_lidos"].items()]
         L += [f"  - {a}: {'presente' if ok else 'ausente'} (não usado nas três análises)"
               for a, ok in r["outros_arquivos_presentes"].items()]
+        L += ["", "Colunas disponíveis (todos os CSVs da pasta):"]
+        L += [f"  - {a}: {', '.join(c)}" for a, c in r["colunas_disponiveis"].items()]
         L += ["", "Qualidade dos dados:"] + [f"  - {k}: {v}" for k, v in r["qualidade"].items()]
     else:
         f, res, m = r["filtros"], r["resultado"], r["moeda"]
