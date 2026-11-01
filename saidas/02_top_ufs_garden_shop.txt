@@ -1,0 +1,27 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Métrica: Top 5 estado (EUA) do cliente por COUNT(DISTINCT order_id) entregues (orders.csv ⨝ customers.csv por customer_id)
+Base: garden_shop (dados/garden_shop)
+
+Filtros:
+  - Situação: shipped
+  - Período: toda a base (2024-01-15 a 2024-06-14 com datas válidas; datas inclusivas, por order_date)
+  - estado (EUA) do cliente: todas
+  - Top: 5
+
+Arquivos utilizados: orders.csv, customers.csv
+
+Resultado:
+  | # | estado (EUA) | Pedidos |
+  |---|----|--------:|
+  | 1 | PA |       5 |
+  | 2 | CA |       4 |
+  | 3 | FL |       2 |
+  | 4 | OR |       2 |
+  | 5 | TX |       2 |
+  Pedidos considerados: 17 · fora do ranking: 0
+
+Qualidade e cobertura:
+  - Base Garden Shop: 'shipped' usado como equivalente de 'delivered'; 'state' são estados dos EUA (ver references/esquemas-de-dados.md).
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py top_ufs --dados dados/garden_shop --saida saidas/02_top_ufs_garden_shop.txt

@@ -1,0 +1,24 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Métrica: Ticket médio sem frete = Σ vlPreco dos itens ÷ COUNT(DISTINCT idPedido) selecionados
+Base: olist (tests/fixtures/olist_recorte)
+
+Filtros:
+  - Situação: delivered
+  - Período: 2018-01-01 a 2018-06-30 (datas inclusivas, por dtPedido, horário ignorado)
+  - UF do cliente: todas
+
+Arquivos utilizados: pedido.csv, item_pedido.csv
+
+Resultado:
+  Ticket médio (sem frete): não aplicável (nenhum pedido selecionado)
+  Soma dos itens: R$ 0,00 · Pedidos: 0 (com itens: 0, sem itens: 0)
+  Frete dos mesmos pedidos (NÃO incluído): R$ 0,00
+
+Qualidade e cobertura:
+  - 2 pedido(s) 'delivered' com dtPedido inválida ou ausente foram excluídos (não há mês para atribuir).
+  - Nenhum pedido selecionado: o ticket médio é não aplicável (não é zero).
+  - Frete (vlFrete) não incluído no ticket.
+  - pagamento_pedido.csv (vlPagamento) não foi usado: inclui frete e pode ter vários pagamentos por pedido.
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py ticket_medio --dados tests/fixtures/olist_recorte --inicio 2018-01 --fim 2018-06 --saida saidas/16_olist_recorte_periodo_sem_dados.txt

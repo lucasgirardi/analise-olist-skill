@@ -1,0 +1,28 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Métrica: Top 5 UF do cliente por COUNT(DISTINCT idPedido) entregues (pedido.csv ⨝ cliente.csv por idCliente)
+Base: olist (tests/fixtures/olist_recorte)
+
+Filtros:
+  - Situação: delivered
+  - Período: toda a base (2017-01-05 a 2017-03-25 com datas válidas; datas inclusivas, por dtPedido)
+  - UF do cliente: todas
+  - Top: 5
+
+Arquivos utilizados: pedido.csv, cliente.csv
+
+Resultado:
+  | # | UF | Pedidos |
+  |---|----|--------:|
+  | 1 | SP |       3 |
+  | 2 | RJ |       2 |
+  | 3 | MG |       1 |
+  | 4 | PR |       1 |
+  Pedidos considerados: 8 · fora do ranking: 1
+
+Qualidade e cobertura:
+  - 2 pedido(s) 'delivered' com dtPedido inválida ou ausente foram excluídos (não há mês para atribuir).
+  - 1 pedido(s) sem cliente correspondente ou sem descUF ficaram fora do ranking.
+  - Só existem 4 UF(s) com pedidos nos filtros (pedido: top 5).
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py top_ufs --dados tests/fixtures/olist_recorte --saida saidas/12_olist_recorte_top_ufs.txt

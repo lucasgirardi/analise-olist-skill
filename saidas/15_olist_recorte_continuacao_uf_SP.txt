@@ -1,0 +1,24 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Métrica: Pedidos entregues por mês = COUNT(DISTINCT idPedido) por mês de dtPedido
+Base: olist (tests/fixtures/olist_recorte)
+
+Filtros:
+  - Situação: delivered
+  - Período: toda a base (2017-01-05 a 2017-03-25 com datas válidas; datas inclusivas, por dtPedido)
+  - UF do cliente: SP
+
+Arquivos utilizados: pedido.csv, cliente.csv
+
+Resultado:
+  | Mês     | Pedidos |
+  |---------|--------:|
+  | 2017-01 |       2 |
+  | 2017-02 |       0 |
+  | 2017-03 |       1 |
+  Total do período: 3 pedido(s)
+
+Qualidade e cobertura:
+  - 2 pedido(s) 'delivered' com dtPedido inválida ou ausente foram excluídos (não há mês para atribuir).
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py pedidos_mes --dados tests/fixtures/olist_recorte --uf SP --saida saidas/15_olist_recorte_continuacao_uf_SP.txt

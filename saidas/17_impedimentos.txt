@@ -1,0 +1,11 @@
+$ python .claude/skills/analise-olist/scripts/analise.py pedidos_mes --dados /nao/existe
+Impedimento: Pasta de dados não encontrada: /nao/existe
+(código de saída: 2)
+
+$ python .claude/skills/analise-olist/scripts/analise.py ticket_medio --dados dados/garden_shop --inicio 31/01/2024
+Impedimento: Data inválida: '31/01/2024'. Use AAAA-MM-DD ou AAAA-MM.
+(código de saída: 2)
+
+$ python .claude/skills/analise-olist/scripts/analise.py top_ufs   # sem --dados e sem ANALISE_OLIST_DADOS
+Impedimento: informe a pasta dos dados com --dados CAMINHO ou a variável de ambiente ANALISE_OLIST_DADOS.
+(código de saída: 2)
