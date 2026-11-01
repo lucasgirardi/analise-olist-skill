@@ -1,0 +1,24 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Métrica: Pedidos entregues por mês = COUNT(DISTINCT order_id) por mês de order_date
+Base: garden_shop (dados/garden_shop)
+
+Filtros:
+  - Situação: shipped
+  - Período: 2025-01-01 a 2025-03-31 (datas inclusivas, por order_date, horário ignorado)
+  - estado (EUA) do cliente: todas
+
+Arquivos utilizados: orders.csv
+
+Resultado:
+  | Mês     | Pedidos |
+  |---------|--------:|
+  | 2025-01 |       0 |
+  | 2025-02 |       0 |
+  | 2025-03 |       0 |
+  Total do período: 0 pedido(s)
+
+Qualidade e cobertura:
+  - Base Garden Shop: 'shipped' usado como equivalente de 'delivered'; 'state' são estados dos EUA (ver references/esquemas-de-dados.md).
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py pedidos_mes --dados dados/garden_shop --inicio 2025-01 --fim 2025-03 --saida saidas/06_periodo_sem_dados_pedidos_mes.txt

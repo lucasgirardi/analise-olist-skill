@@ -1,0 +1,35 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Diagnóstico da base: Olist (nomes em português: pedido.csv, cliente.csv, item_pedido.csv...)
+Pasta: tests/fixtures/olist_recorte
+
+Arquivos lidos:
+  - pedido.csv: 12 linhas (separador ',')
+  - cliente.csv: 7 linhas (separador ',')
+  - item_pedido.csv: 14 linhas (separador ',')
+  - pagamento_pedido.csv: presente (não usado nas três análises)
+  - produto.csv: ausente (não usado nas três análises)
+  - vendedor.csv: ausente (não usado nas três análises)
+  - avaliacao_pedido.csv: ausente (não usado nas três análises)
+
+Colunas disponíveis (todos os CSVs da pasta):
+  - cliente.csv: idCliente, idClienteUnico, descUF
+  - item_pedido.csv: idPedido, idPedidoItem, idProduto, idVendedor, vlPreco, vlFrete
+  - pagamento_pedido.csv: idPedido, nrSequencial, descTipoPagamento, nrParcelas, vlPagamento
+  - pedido.csv: idPedido, idCliente, descSituacao, dtPedido, dtAprovado, dtEntregue, dtEstimativaEntrega
+
+Qualidade dos dados:
+  - pedidos_total: 12
+  - ids_pedido_duplicados: 0
+  - pedidos_data_invalida_ou_ausente: 2
+  - pedidos_sem_cliente_correspondente: 1
+  - clientes_duplicados: 0
+  - clientes_uf_vazia: 0
+  - itens_total: 14
+  - itens_sem_pedido_correspondente: 1
+  - itens_valor_invalido: 0
+  - situacoes: {'delivered': 10, 'canceled': 1, 'shipped': 1}
+  - datas_min: 2017-01-05
+  - datas_max: 2017-03-25
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py diagnostico --dados tests/fixtures/olist_recorte --saida saidas/10_olist_recorte_diagnostico.txt

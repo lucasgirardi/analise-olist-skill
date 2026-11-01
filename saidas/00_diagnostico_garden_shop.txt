@@ -1,0 +1,36 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Diagnóstico da base: Garden Shop (orders.csv, customers.csv, order_items.csv) — equivalências em references/esquemas-de-dados.md
+Pasta: dados/garden_shop
+
+Arquivos lidos:
+  - orders.csv: 24 linhas (separador ',')
+  - customers.csv: 20 linhas (separador ',')
+  - order_items.csv: 48 linhas (separador ',')
+  - products.csv: presente (não usado nas três análises)
+  - categories.csv: presente (não usado nas três análises)
+  - suppliers.csv: presente (não usado nas três análises)
+
+Colunas disponíveis (todos os CSVs da pasta):
+  - categories.csv: category_id, category_name
+  - customers.csv: customer_id, first_name, last_name, email, phone, city, state, signup_date, is_active
+  - order_items.csv: order_item_id, order_id, product_id, quantity, unit_price
+  - orders.csv: order_id, customer_id, order_date, shipped_date, status, coupon_code
+  - products.csv: product_id, product_name, category_id, supplier_id, price, cost, quantity_on_hand, reorder_level, discontinued
+  - suppliers.csv: supplier_id, supplier_name, contact_email, state
+
+Qualidade dos dados:
+  - pedidos_total: 24
+  - ids_pedido_duplicados: 0
+  - pedidos_data_invalida_ou_ausente: 0
+  - pedidos_sem_cliente_correspondente: 0
+  - clientes_duplicados: 0
+  - clientes_uf_vazia: 0
+  - itens_total: 48
+  - itens_sem_pedido_correspondente: 0
+  - itens_valor_invalido: 0
+  - situacoes: {'shipped': 17, 'processing': 3, 'pending': 3, 'cancelled': 1}
+  - datas_min: 2024-01-15
+  - datas_max: 2024-06-14
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py diagnostico --dados dados/garden_shop --saida saidas/00_diagnostico_garden_shop.txt

@@ -1,0 +1,40 @@
+configfile: pyproject.toml
+testpaths: tests
+plugins: platformdirs-4.13.3, anyio-4.15.1
+collecting ... collected 33 items
+
+tests/test_analise.py::test_detecta_esquema PASSED                       [  3%]
+tests/test_analise.py::test_qualidade_dos_dados_recorte PASSED           [  6%]
+tests/test_analise.py::test_pasta_inexistente PASSED                     [  9%]
+tests/test_analise.py::test_pasta_sem_arquivos_conhecidos PASSED         [ 12%]
+tests/test_analise.py::test_coluna_ausente PASSED                        [ 15%]
+tests/test_analise.py::test_separador_ponto_e_virgula PASSED             [ 18%]
+tests/test_analise.py::test_arquivos_originais_nao_mudam PASSED          [ 21%]
+tests/test_analise.py::test_m1_recorte_valores_a_mao PASSED              [ 24%]
+tests/test_analise.py::test_m1_confere_com_calculo_independente PASSED   [ 27%]
+tests/test_analise.py::test_m1_bordas_do_periodo_sao_inclusivas PASSED   [ 30%]
+tests/test_analise.py::test_m1_periodo_sem_dados_retorna_zero PASSED     [ 33%]
+tests/test_analise.py::test_m1_continuacao_filtro_uf PASSED              [ 36%]
+tests/test_analise.py::test_m1_periodo_invalido PASSED                   [ 39%]
+tests/test_analise.py::test_m2_ranking_recorte PASSED                    [ 42%]
+tests/test_analise.py::test_m2_empate_no_corte_e_avisado PASSED          [ 45%]
+tests/test_analise.py::test_m2_continuacao_periodo PASSED                [ 48%]
+tests/test_analise.py::test_m2_periodo_sem_dados PASSED                  [ 51%]
+tests/test_analise.py::test_m3_recorte_valores_a_mao PASSED              [ 54%]
+tests/test_analise.py::test_m3_confere_com_calculo_independente PASSED   [ 57%]
+tests/test_analise.py::test_m3_continuacao_periodo_e_uf PASSED           [ 60%]
+tests/test_analise.py::test_m3_sem_pedidos_e_nao_aplicavel PASSED        [ 63%]
+tests/test_analise.py::test_m3_pagamentos_nao_multiplicam PASSED         [ 66%]
+tests/test_analise.py::test_gs_m1_confere_com_contagem_direta PASSED     [ 69%]
+tests/test_analise.py::test_gs_m3_valor_do_item_usa_quantidade PASSED    [ 72%]
+tests/test_analise.py::test_gs_m2_confere_com_contagem_direta PASSED     [ 75%]
+tests/test_analise.py::test_cli_texto_tem_evidencias PASSED              [ 78%]
+tests/test_analise.py::test_cli_json PASSED                              [ 81%]
+tests/test_analise.py::test_cli_media_sem_pedidos_mostra_nao_aplicavel PASSED [ 84%]
+tests/test_analise.py::test_cli_variavel_de_ambiente PASSED              [ 87%]
+tests/test_analise.py::test_cli_sem_pasta_explica_impedimento PASSED     [ 90%]
+tests/test_analise.py::test_cli_salva_saida_sem_tocar_nos_dados PASSED   [ 93%]
+tests/test_analise.py::test_arredondamento_comercial_na_saida PASSED     [ 96%]
+tests/test_analise.py::test_diagnostico_lista_colunas_de_todos_os_arquivos PASSED [100%]
+
+============================== 33 passed in 4.02s ==============================

@@ -1,0 +1,22 @@
+=== Copiloto de analytics · skill analise-olist ===
+
+Métrica: Ticket médio sem frete = Σ unit_price × quantity dos itens ÷ COUNT(DISTINCT order_id) selecionados
+Base: garden_shop (dados/garden_shop)
+
+Filtros:
+  - Situação: shipped
+  - Período: 2025-01-01 a 2025-03-31 (datas inclusivas, por order_date, horário ignorado)
+  - estado (EUA) do cliente: todas
+
+Arquivos utilizados: orders.csv, order_items.csv
+
+Resultado:
+  Ticket médio (sem frete): não aplicável (nenhum pedido selecionado)
+  Soma dos itens: US$ 0,00 · Pedidos: 0 (com itens: 0, sem itens: 0)
+
+Qualidade e cobertura:
+  - Nenhum pedido selecionado: o ticket médio é não aplicável (não é zero).
+  - A base não tem frete: o ticket já é sem frete por construção.
+  - Base Garden Shop: 'shipped' usado como equivalente de 'delivered'; 'state' são estados dos EUA (ver references/esquemas-de-dados.md).
+
+Comando: python .claude/skills/analise-olist/scripts/analise.py ticket_medio --dados dados/garden_shop --inicio 2025-01 --fim 2025-03 --saida saidas/07_periodo_sem_dados_ticket.txt
