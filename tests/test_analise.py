@@ -255,3 +255,8 @@ def test_cli_salva_saida_sem_tocar_nos_dados(script, olist_dir, tmp_path):
     destino = tmp_path / "saida.txt"
     r = _cli(script, "top_ufs", "--dados", str(olist_dir), "--saida", str(destino))
     assert r.returncode == 0 and destino.read_text() == r.stdout
+
+
+def test_arredondamento_comercial_na_saida(script, olist_dir):
+    r = _cli(script, "ticket_medio", "--dados", str(olist_dir))
+    assert "R$ 63,13" in r.stdout          # 505 / 8 = 63,125
