@@ -1,0 +1,9 @@
+idPedido,nrSequencial,descTipoPagamento,nrParcelas,vlPagamento
+p01,1,credit_card,3,150.00
+p01,2,voucher,1,70.00
+p02,1,boleto,1,55.00
+p03,1,credit_card,2,88.00
+p05,1,credit_card,1,55.00
+p07,1,debit_card,1,66.00
+p10,1,credit_card,1,44.00
+p11,1,boleto,1,27.50
